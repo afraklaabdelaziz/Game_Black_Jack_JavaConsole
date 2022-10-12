@@ -3,9 +3,9 @@ package com.company;
 import java.util.ArrayList;
 
 public class Person {
-    private String name;
-    private int coins;
-    private ArrayList<Carte> cartes = new ArrayList();
+    protected String name;
+    protected int coins;
+    protected static ArrayList<Carte> cartes = new ArrayList();
 
     public Person(String name, int coins, ArrayList carte) {
         this.name = name;

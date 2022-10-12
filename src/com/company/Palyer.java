@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 public class Palyer extends Person{
+    int score = 0;
 
 public Palyer(){}
     public Palyer(String name, int coins, ArrayList<Carte> carte) {
@@ -10,26 +11,25 @@ public Palyer(){}
     }
 
     public ArrayList tirerCarte(ArrayList<Carte> cartes){
-        this.getCarte().add(cartes.get(0));
+        this.cartes.add(cartes.get(0));
         cartes.remove(0);
         return cartes;
     }
 
     public void afficheCarte(){
         for (Carte carte : getCarte()){
-            System.out.println(carte);
+            System.out.print(carte+"\t");
         }
     }
 
     public void afficheScorePlayer(){
-     int score = 0;
      for (Carte carte : getCarte()){
-         score += carte.getHauteur();
+         score += carte.getHauteur()+10;
      }
         System.out.println(score);
     }
 
-    public void afficheCoinsDealer(){
+    public void afficheCoinsPlayer(){
         System.out.println(getCoins());
     }
 

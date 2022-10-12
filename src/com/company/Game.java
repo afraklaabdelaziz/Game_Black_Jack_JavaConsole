@@ -49,9 +49,69 @@ public class Game {
         int coins = sc.nextInt();
         this.creeCartes();
         dealer.mellangerCartes(getCartes());
-        dealer.piocheCarte(getCartes());
-        this.palyer.tirerCarte(cartes);
+        dealer.piocheCarte(cartes);
+        this.hand();
+    }
 
+
+    public void hand(){
+        if (palyer.score == 21){
+            compareScorePlayerAndDealer();
+        }else if(palyer.score > 21){
+            System.out.println("vous avez perdu");
+        }else{
+            System.out.print("Player Carte :\t\t");
+            palyer.afficheCarte();
+            System.out.println("\n1 : tirer Une carte");
+            System.out.println("2 : Stand");
+            int choix = sc.nextInt();
+            switch (choix){
+                case 1 :
+                    System.out.print("Player Carte :\t\t");
+                    palyer.afficheCarte();
+                    palyer.tirerCarte(cartes);
+                    System.out.println(palyer.score);
+                    hand();
+                    break;
+                case 2 :
+                    System.out.print("dealer Carte :\t\t");
+                    dealer.afficheCarte();
+                    compareScorePlayerAndDealer();
+                    break;
+            }
+        }
+    }
+
+    public void compareScorePlayerAndDealer(){
+        if (dealer.scoreDealer < 17){
+            System.out.print("dealer Carte :\t\t");
+            dealer.tirerCarte(cartes);
+            dealer.afficheCarte();
+        }
+        else if(dealer.scoreDealer > 21){
+            System.out.print("dealer Carte :\t\t");
+            dealer.afficheCarte();
+            System.out.println("Palyer win");
+            // coins invester *2
+        }
+        else if(dealer.scoreDealer == palyer.score){
+            System.out.print("dealer Carte :\t\t");
+            dealer.afficheCarte();
+            System.out.println("egalitee");
+            // coins ne change pas
+        }
+        else if(dealer.scoreDealer > palyer.score ){
+            System.out.print("dealer Carte :\t\t");
+            dealer.afficheCarte();
+            System.out.println("player win");
+            // coins invester *2
+        }
+        else {
+            System.out.print("dealer Carte :\t\t");
+            dealer.afficheCarte();
+            System.out.println("Dealer win");
+        }
+        // coins invester Dealer *2
     }
 
 

@@ -2,9 +2,13 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Dealer extends Person {
-    ArrayList<Carte> cartesDealer = new ArrayList();
+    int scoreDealer = 0;
+    Palyer palyer = new Palyer();
+    static ArrayList<Carte> cartesDealer = new ArrayList();
+    Scanner sc = new Scanner(System.in);
     public Dealer(){
         super();
     }
@@ -39,27 +43,29 @@ public class Dealer extends Person {
 
     public ArrayList piocheCarte(ArrayList<Carte> cartePioche){
         this.cartesDealer.add(cartePioche.get(0));
-        this.getCarte().add(cartePioche.get(1));
-        this.getCarte().add(cartePioche.get(2));
         cartePioche.remove(0);
+       palyer.cartes.add(cartePioche.get(0));
         cartePioche.remove(0);
+        palyer.cartes.add(cartePioche.get(0));
+        cartePioche.remove(0);
+        this.cartesDealer.add(cartePioche.get(0));
         cartePioche.remove(0);
         return cartePioche;
     }
 
 
+
+
+
     public void afficheCarte() {
-        for (Carte carte : cartesDealer) {
-            System.out.println(carte);
-        }
+        System.out.println(palyer.cartes);
     }
 
         public void afficheScoreDealer(){
-            int score = 0;
             for (Carte carte : getCarte()){
-                score += carte.getHauteur();
+                scoreDealer += carte.getHauteur();
             }
-            System.out.println(score);
+            System.out.println(scoreDealer);
         }
 
         public void afficheCoinsDealer(){
