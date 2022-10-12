@@ -22,11 +22,18 @@ public Palyer(){}
         }
     }
 
-    public void afficheScorePlayer(){
+    public int afficheScorePlayer(){
      for (Carte carte : getCarte()){
-         score += carte.getHauteur()+10;
+         if (carte.getHauteur() == 1 && carte.getHauteur() < 10){
+             this.score += 11;
+         }
+         else if (carte.getHauteur() == 11 || carte.getHauteur() == 12 || carte.getHauteur() == 13){
+             this.score += 10;
+         }else{
+             this.score += carte.getHauteur();
+         }
      }
-        System.out.println(score);
+        return this.score;
     }
 
     public void afficheCoinsPlayer(){

@@ -49,7 +49,12 @@ public class Game {
         int coins = sc.nextInt();
         this.creeCartes();
         dealer.mellangerCartes(getCartes());
-        dealer.piocheCarte(cartes);
+        //System.out.println(cartes);
+        dealer.piocheCarte(cartes,this.palyer);
+        //System.out.println(cartes);
+        //System.out.println(cartes.size());
+        //System.out.println("dealer : " + dealer.cartes);
+        //System.out.println("player : " + palyer.cartes);
         this.hand();
     }
 
@@ -62,15 +67,13 @@ public class Game {
         }else{
             System.out.print("Player Carte :\t\t");
             palyer.afficheCarte();
+            System.out.println(palyer.afficheScorePlayer());
             System.out.println("\n1 : tirer Une carte");
             System.out.println("2 : Stand");
             int choix = sc.nextInt();
             switch (choix){
                 case 1 :
-                    System.out.print("Player Carte :\t\t");
-                    palyer.afficheCarte();
                     palyer.tirerCarte(cartes);
-                    System.out.println(palyer.score);
                     hand();
                     break;
                 case 2 :
@@ -118,7 +121,7 @@ public class Game {
 
     public void afficheListe(){
         for (Carte carte : cartes){
-         System.out.println(carte);
+         System.out.print(carte);
    }
     }
 

@@ -6,8 +6,6 @@ import java.util.Scanner;
 
 public class Dealer extends Person {
     int scoreDealer = 0;
-    Palyer palyer = new Palyer();
-    static ArrayList<Carte> cartesDealer = new ArrayList();
     Scanner sc = new Scanner(System.in);
     public Dealer(){
         super();
@@ -41,16 +39,15 @@ public class Dealer extends Person {
         return listeCarte;
     }
 
-    public ArrayList piocheCarte(ArrayList<Carte> cartePioche){
-        this.cartesDealer.add(cartePioche.get(0));
+    public void piocheCarte(ArrayList<Carte> cartePioche,Palyer palyer){
+        this.cartes.add(cartePioche.get(0));
         cartePioche.remove(0);
        palyer.cartes.add(cartePioche.get(0));
         cartePioche.remove(0);
         palyer.cartes.add(cartePioche.get(0));
         cartePioche.remove(0);
-        this.cartesDealer.add(cartePioche.get(0));
+        this.cartes.add(cartePioche.get(0));
         cartePioche.remove(0);
-        return cartePioche;
     }
 
 
@@ -58,7 +55,7 @@ public class Dealer extends Person {
 
 
     public void afficheCarte() {
-        System.out.println(palyer.cartes);
+        System.out.println(this.cartes);
     }
 
         public void afficheScoreDealer(){
