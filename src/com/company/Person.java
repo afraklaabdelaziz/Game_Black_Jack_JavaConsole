@@ -6,11 +6,13 @@ public class Person {
     protected String name;
     protected int coins;
     protected  ArrayList<Carte> cartes = new ArrayList();
+    protected int score;
 
-    public Person(String name, int coins, ArrayList carte) {
+    public Person(String name, int coins, ArrayList carte,int score) {
         this.name = name;
         this.coins = coins;
         this.cartes = carte;
+        this.score = score;
     }
 
     public Person() {
@@ -41,12 +43,21 @@ public class Person {
         this.cartes = carte;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "Person{" +
                 "name='" + name + '\'' +
                 ", coins=" + coins +
-                ", carte=" + cartes +
+                ", cartes=" + cartes +
+                ", score=" + score +
                 '}';
     }
 }

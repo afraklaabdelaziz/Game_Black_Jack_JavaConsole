@@ -3,11 +3,30 @@ package com.company;
 import java.util.ArrayList;
 
 public class Palyer extends Person{
-    int score = 0;
-
+   private int coinInvester = 0;
+   private int coinss = 15000;
 public Palyer(){}
-    public Palyer(String name, int coins, ArrayList<Carte> carte) {
-        super(name, coins, carte);
+    public Palyer(String name, int coins, ArrayList<Carte> carte,int score,int coinInvester,int coinss) {
+        super(name,coins, carte,score);
+
+        this.coinInvester = coinInvester;
+        this.coinss = coinss;
+    }
+
+    public int getCoinInvester() {
+        return coinInvester;
+    }
+
+    public void setCoinInvester(int coinInvester) {
+        this.coinInvester = coinInvester;
+    }
+
+    public int getCoinss() {
+        return coinss;
+    }
+
+    public void setCoinss(int coinss) {
+        this.coinss = coinss;
     }
 
     public ArrayList tirerCarte(ArrayList<Carte> cartes){
@@ -22,9 +41,16 @@ public Palyer(){}
         }
     }
 
-    public int afficheScorePlayer(){
+    public void calculerScorePlayer(){
+    int scoreTmp = this.score;
+    this.score = 0;
+        System.out.println(scoreTmp);
      for (Carte carte : getCarte()){
-         if (carte.getHauteur() == 1 && carte.getHauteur() < 10){
+          if (carte.getHauteur() == 1 && scoreTmp >= 10){
+              this.score += carte.getHauteur();
+              scoreTmp = scoreTmp - 10;
+         }
+         else if (carte.getHauteur() == 1 && this.score <= 10){
              this.score += 11;
          }
          else if (carte.getHauteur() == 11 || carte.getHauteur() == 12 || carte.getHauteur() == 13){
@@ -33,11 +59,7 @@ public Palyer(){}
              this.score += carte.getHauteur();
          }
      }
-        return this.score;
     }
 
-    public void afficheCoinsPlayer(){
-        System.out.println(getCoins());
-    }
 
 }

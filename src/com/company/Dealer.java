@@ -5,13 +5,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Dealer extends Person {
-    int scoreDealer = 0;
-    Scanner sc = new Scanner(System.in);
     public Dealer(){
         super();
     }
-    public Dealer(String name, int coins, ArrayList carte) {
-        super(name, coins, carte);
+    public Dealer(String name, int coins, ArrayList carte,int score) {
+        super(name, coins, carte,score);
     }
 
     public void mellangerCartes(ArrayList cartes){
@@ -51,6 +49,11 @@ public class Dealer extends Person {
     }
 
 
+    public ArrayList tirerUneCarte(ArrayList<Carte> cartes){
+        this.cartes.add(cartes.get(0));
+        cartes.remove(0);
+        return cartes;
+    }
 
 
 
@@ -58,14 +61,33 @@ public class Dealer extends Person {
         System.out.println(this.cartes);
     }
 
-        public void afficheScoreDealer(){
-            for (Carte carte : getCarte()){
-                scoreDealer += carte.getHauteur();
+    public void calculerScoreDealer(){
+        int scoreTmp = this.score;
+        this.score = 0;
+        for (Carte carte : this.cartes){
+            if (carte.getHauteur() == 1 && scoreTmp >= 10){
+                this.score += carte.getHauteur();
+                scoreTmp = scoreTmp - 10;
             }
-            System.out.println(scoreDealer);
+            else if (carte.getHauteur() == 1 && this.score <= 10){
+                this.score += 11;
+            }
+            else if (carte.getHauteur() == 11 || carte.getHauteur() == 12 || carte.getHauteur() == 13){
+                this.score += 10;
+            }else{
+                this.score += carte.getHauteur();
+            }
         }
+    }
 
-        public void afficheCoinsDealer(){
-            System.out.println(getCoins());
-        }
+
+    public void defausserCarte(ArrayList carteDefuaser,Palyer palyer){
+        carteDefuaser.add(this.cartes);
+        carteDefuaser.add(palyer.cartes);
+        this.cartes.clear();
+        palyer.cartes.clear();
+        palyer.score = 0;
+        this.score = 0;
+    }
+
 }
