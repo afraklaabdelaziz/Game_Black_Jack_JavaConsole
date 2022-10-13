@@ -4,13 +4,11 @@ import java.util.ArrayList;
 
 public class Person {
     protected String name;
-    protected int coins;
     protected  ArrayList<Carte> cartes = new ArrayList();
     protected int score;
 
-    public Person(String name, int coins, ArrayList carte,int score) {
+    public Person(String name, ArrayList carte,int score) {
         this.name = name;
-        this.coins = coins;
         this.cartes = carte;
         this.score = score;
     }
@@ -27,13 +25,6 @@ public class Person {
         this.name = name;
     }
 
-    public int getCoins() {
-        return coins;
-    }
-
-    public void setCoins(int coins) {
-        this.coins = coins;
-    }
 
     public ArrayList<Carte> getCarte() {
         return cartes;
@@ -55,7 +46,6 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
-                ", coins=" + coins +
                 ", cartes=" + cartes +
                 ", score=" + score +
                 '}';
