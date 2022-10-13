@@ -84,10 +84,11 @@ public class Dealer extends Person {
 
 
 
-    public void defausserCarte(ArrayList carteDefuaser,Palyer palyer){
-        carteDefuaser.add(this.cartes);
-        carteDefuaser.add(palyer.cartes);
+    public void defausserCarte(ArrayList<Carte> carteDefuaser,Palyer palyer){
+        carteDefuaser.addAll(this.cartes);
+        carteDefuaser.addAll(palyer.cartes);
         this.cartes.clear();
+        System.out.println(carteDefuaser);
         palyer.cartes.clear();
         palyer.score = 0;
         this.score = 0;
