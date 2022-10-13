@@ -8,6 +8,7 @@
     public class Dealer extends Person
 
         {
+            Carte carteRouge = new Carte(0,0);
              Scanner sc = new Scanner(System.in);
 
                 public Dealer()
@@ -32,6 +33,7 @@
                     carteMelanger = (ArrayList) carteee.get(1);
                     carteMelanger.add(carteee.get(0));
                    }
+                    this.addCarteRouge(cartes);
                 }
 
 
@@ -61,22 +63,50 @@
                 public void piocheCarte(ArrayList<Carte> cartePioche,Palyer palyer)
 
                 {
+                    if (cartePioche.get(0).equals(carteRouge))
+                    {
+                        cartePioche.remove(0);
+                        System.out.println("ouiPD");
+                    }
+                        this.cartes.add(cartePioche.get(0));
+                        cartePioche.remove(0);
 
-                    this.cartes.add(cartePioche.get(0));
-                    cartePioche.remove(0);
-                   palyer.cartes.add(cartePioche.get(0));
-                    cartePioche.remove(0);
-                    palyer.cartes.add(cartePioche.get(0));
-                    cartePioche.remove(0);
-                    this.cartes.add(cartePioche.get(0));
-                    cartePioche.remove(0);
+                    if (cartePioche.get(0).equals(carteRouge))
+                    {
+                        cartePioche.remove(0);
+                        System.out.println("ouiPP");
+                    }
+
+                        palyer.cartes.add(cartePioche.get(0));
+                        cartePioche.remove(0);
+
+                    if (cartePioche.get(0).equals(carteRouge))
+                    {
+                        cartePioche.remove(0);
+                        System.out.println("ouiPP");
+                    }
+                        palyer.cartes.add(cartePioche.get(0));
+                        cartePioche.remove(0);
+
+                    if (cartePioche.get(0).equals(carteRouge))
+                    {
+                        cartePioche.remove(0);
+                        System.out.println("ouiPD");
+                    }
+                        this.cartes.add(cartePioche.get(0));
+                        cartePioche.remove(0);
+
+
                 }
 
 
                 public ArrayList tirerCartePlayer(ArrayList<Carte> cartes,Palyer palyer)
 
                 {
-
+                   if (cartes.get(0).equals(carteRouge)){
+                       cartes.remove(0);
+                       System.out.println("ouiP");
+                   }
                     palyer.cartes.add(cartes.get(0));
                     cartes.remove(0);
                     return cartes;
@@ -86,6 +116,11 @@
                 public ArrayList tirerUneCarte(ArrayList<Carte> cartes)
 
                 {
+                    if (cartes.get(0).equals(carteRouge))
+                    {
+                        cartes.remove(0);
+                        System.out.println("ouiD");
+                    }
 
                     this.cartes.add(cartes.get(0));
                     cartes.remove(0);
@@ -112,7 +147,7 @@
                     switch (choix)
                     {
                         case 1 :
-                            this.tirerCartePlayer(cartes,palyer);
+                            this.tirerCartePlayer(game.getCartes(),palyer);
                             game.checkScorePlayer();
                             break;
                         case 2 :
@@ -164,6 +199,17 @@
                         palyer.cartes.clear();
                         palyer.score = 0;
                         this.score = 0;
+                }
+
+
+                public void addCarteRouge(ArrayList<Carte> cartesR)
+
+                {
+
+                    Random r = new Random();
+                    int n = r.nextInt(52);
+                    cartesR.add(7,this.carteRouge);
+                    System.out.println(n);
                 }
 
 

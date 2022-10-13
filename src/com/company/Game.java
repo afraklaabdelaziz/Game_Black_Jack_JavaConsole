@@ -2,6 +2,7 @@
     package com.company;
 
     import java.util.ArrayList;
+    import java.util.Random;
     import java.util.Scanner;
 
     public class Game
@@ -112,7 +113,8 @@
                 palyer.calculerScorePlayer();
                 System.out.println("Votre score est : " +palyer.score);
 
-                this.checkBlackJack();
+                  this.checkBlackJack();
+
                      if (palyer.score == 21)
                      {
                         palyer.afficheCarte();
@@ -134,7 +136,7 @@
 
                     else
                     {
-                     dealer.hand(palyer,this);
+                      dealer.hand(palyer,this);
                     }
             }
 
@@ -207,6 +209,8 @@
             public void creteInfoPlayer()
 
             {
+                do {
+
                     System.out.println("Votre Coins = " + palyer.getCoinss());
                     System.out.println("Choisir valeur de coins que tu va invester");
                     System.out.println("1 : pour 500 coins");
@@ -226,7 +230,7 @@
                         case 3 :
                             palyer.setCoinInvester(3000);
                             break;
-                    }
+                    }}while (palyer.getCoinInvester() > palyer.getCoinss());
             }
 
 
@@ -289,11 +293,19 @@
             public void replay()
 
             {
+                if (!cartes.contains(dealer.carteRouge)){
+                   dealer.doubleMelange(this.cartes,this.palyer,this.carteDefausser);
+                }
+
                 if (palyer.getCoinss() < 500)
                 {
                     System.out.println("votre coins est insurfusant");
                     return;
                 }
+
+                else
+                {
+
 
                 System.out.println("\nVotre Coins est : " + palyer.getCoinss());
                 System.out.println("1 : replay");
@@ -309,5 +321,9 @@
                         break;
                 }
             }
+            }
+
+
+
 
     }
