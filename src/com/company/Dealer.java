@@ -62,12 +62,12 @@ public class Dealer extends Person {
     }
 
     public void calculerScoreDealer(){
-        int scoreTmp = this.score;
+        int scoreTmpD = this.score;
         this.score = 0;
         for (Carte carte : this.cartes){
-            if (carte.getHauteur() == 1 && scoreTmp >= 10){
+            if (carte.getHauteur() == 1 && scoreTmpD >= 10){
                 this.score += carte.getHauteur();
-                scoreTmp = scoreTmp - 10;
+                scoreTmpD = scoreTmpD - 10;
             }
             else if (carte.getHauteur() == 1 && this.score <= 10){
                 this.score += 11;
@@ -79,6 +79,9 @@ public class Dealer extends Person {
             }
         }
     }
+
+
+
 
 
     public void defausserCarte(ArrayList carteDefuaser,Palyer palyer){

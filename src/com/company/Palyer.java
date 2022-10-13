@@ -44,7 +44,6 @@ public Palyer(){}
     public void calculerScorePlayer(){
     int scoreTmp = this.score;
     this.score = 0;
-        System.out.println(scoreTmp);
      for (Carte carte : getCarte()){
           if (carte.getHauteur() == 1 && scoreTmp >= 10){
               this.score += carte.getHauteur();

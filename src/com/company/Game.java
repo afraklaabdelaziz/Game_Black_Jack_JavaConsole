@@ -70,17 +70,23 @@ public class Game {
 
 
     public void hand(){
-        System.out.println("Dealer Carte :  " + dealer.cartes.get(0));
+        System.out.println("\nDealer Carte :  " + dealer.cartes.get(0));
         palyer.calculerScorePlayer();
         System.out.println("Votre score est : "+palyer.score);
-        if (palyer.score == 21){
-            System.out.print("Player Carte :\t\t");
+        this.checkBlackJack();
+         if (palyer.score == 21){
             palyer.afficheCarte();
             compareScorePlayerAndDealer();
-        }else if(palyer.score > 21){
+        }
+
+
+        else if(palyer.score > 21){
             System.out.print("Player Carte :\t\t");
             palyer.afficheCarte();
-            System.out.println("vous avez perdu");
+            System.out.println("\nvous avez perdu");
+            System.out.println("Dealer Cartes  "+dealer.cartes);
+            dealer.calculerScoreDealer();
+            System.out.println("Dealer Score   "+dealer.score);
             palyer.setCoinss(palyer.getCoinss() - palyer.getCoinInvester());
             this.replay();
         }else{
@@ -103,7 +109,7 @@ public class Game {
 
     public void compareScorePlayerAndDealer(){
         dealer.calculerScoreDealer();
-        System.out.println("dealer Carte :\t\t" + dealer.cartes);
+        System.out.println("\ndealer Carte :\t\t" + dealer.cartes);
         System.out.println("Score de dealer est : " + dealer.score);
 
         if (dealer.score < 17){
@@ -143,6 +149,10 @@ public class Game {
     }
 
     public void replay(){
+        if (palyer.getCoinss() < 500){
+            System.out.println("votre coins est insurfusant");
+            return;
+        }
         System.out.println("\nVotre Score est : " + palyer.getCoinss());
         System.out.println("1 : replay");
         System.out.println("2 : quiter");
@@ -183,6 +193,44 @@ public class Game {
         for (Carte carte : cartes){
          System.out.print(carte);
    }
+    }
+
+
+
+    public void checkBlackJack(){
+        dealer.calculerScoreDealer();
+        if(palyer.cartes.size() == 2 && palyer.score == 21 && dealer.cartes.size() == 2 && dealer.score != 21){
+
+            System.out.print("Player Carte :\t\t");
+            palyer.afficheCarte();
+            System.out.println("\n Player win");
+            System.out.println("Dealer Cartes  "+dealer.cartes);
+            System.out.println("Dealer Score   "+dealer.score);
+            palyer.setCoinss(palyer.getCoinss() + palyer.getCoinInvester());
+            this.replay();
+
+
+        }else if(dealer.cartes.size() == 2 && dealer.score == 21 && palyer.cartes.size() == 2 && palyer.score != 21){
+
+            System.out.print("Player Carte :\t\t");
+            palyer.afficheCarte();
+            System.out.println("\nDealer Cartes  "+dealer.cartes);
+            System.out.println("Dealer Score   "+dealer.score);
+            System.out.println("Dealer win");
+            palyer.setCoinss(palyer.getCoinss() - palyer.getCoinInvester());
+            this.replay();
+
+        }else if(dealer.cartes.size() == 2 && dealer.score == 21 && palyer.cartes.size() == 2 && palyer.score == 21){
+
+            System.out.print("Player Carte :\t\t");
+            palyer.afficheCarte();
+            System.out.println("\nDealer Cartes  "+dealer.cartes);
+            System.out.println("Dealer Score   "+dealer.score);
+            System.out.println("egaliter");
+
+            this.replay();
+
+        }
     }
 
 }
