@@ -100,19 +100,19 @@
                 //System.out.println("player : " + palyer.cartes);
                 System.out.println("Bien venu   " + palyer.name);
                 System.out.println("vous avez invester  " + palyer.getCoinInvester());
-                this.hand();
+                this.checkScorePlayer();
             }
 
 
 
-            public void hand()
+            public void checkScorePlayer()
 
             {
                 System.out.println("\nDealer Carte :  " + dealer.cartes.get(0));
                 palyer.calculerScorePlayer();
                 System.out.println("Votre score est : " +palyer.score);
-                this.checkBlackJack();
 
+                this.checkBlackJack();
                      if (palyer.score == 21)
                      {
                         palyer.afficheCarte();
@@ -134,22 +134,7 @@
 
                     else
                     {
-                        System.out.print("Player Carte :\t\t");
-                        palyer.afficheCarte();
-                        System.out.println("\n1 : tirer Une carte");
-                        System.out.println("2 : Stand");
-                        int choix = sc.nextInt();
-                            switch (choix)
-                            {
-
-                                case 1 :
-                                    dealer.tirerCartePlayer(cartes,palyer);
-                                    hand();
-                                    break;
-                                case 2 :
-                                    compareScorePlayerAndDealer();
-                                    break;
-                            }
+                     dealer.hand(palyer,this);
                     }
             }
 
@@ -320,7 +305,7 @@
                     case 1 :
                         this.creteInfoPlayer();
                         dealer.piocheCarte(cartes,palyer);
-                        this.hand();
+                        this.checkScorePlayer();
                         break;
                 }
             }

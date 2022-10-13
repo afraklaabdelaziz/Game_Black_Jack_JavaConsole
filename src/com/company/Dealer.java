@@ -3,10 +3,12 @@
 
     import java.util.ArrayList;
     import java.util.Random;
+    import java.util.Scanner;
 
-        public class Dealer extends Person
+    public class Dealer extends Person
 
         {
+             Scanner sc = new Scanner(System.in);
 
                 public Dealer()
 
@@ -96,6 +98,27 @@
 
                 {
                     System.out.println(this.cartes);
+                }
+
+
+                public void hand(Palyer palyer,Game game)
+
+                {
+                    System.out.print("Player Carte :\t\t");
+                    palyer.afficheCarte();
+                    System.out.println("\n1 : tirer Une carte");
+                    System.out.println("2 : Stand");
+                    int choix = sc.nextInt();
+                    switch (choix)
+                    {
+                        case 1 :
+                            this.tirerCartePlayer(cartes,palyer);
+                            game.checkScorePlayer();
+                            break;
+                        case 2 :
+                            game.compareScorePlayerAndDealer();
+                            break;
+                    }
                 }
 
                 public void calculerScoreDealer()
