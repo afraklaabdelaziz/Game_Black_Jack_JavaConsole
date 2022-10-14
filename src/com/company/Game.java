@@ -210,7 +210,6 @@
 
             {
                 do {
-
                     System.out.println("Votre Coins = " + palyer.getCoinss());
                     System.out.println("Choisir valeur de coins que tu va invester");
                     System.out.println("1 : pour 500 coins");
@@ -300,7 +299,7 @@
                 if (palyer.getCoinss() < 500)
                 {
                     System.out.println("votre coins est insurfusant");
-                    return;
+                    System.exit(0);
                 }
 
                 else

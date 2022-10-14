@@ -66,7 +66,6 @@
                     if (cartePioche.get(0).equals(carteRouge))
                     {
                         cartePioche.remove(0);
-                        System.out.println("ouiPD");
                     }
                         this.cartes.add(cartePioche.get(0));
                         cartePioche.remove(0);
@@ -74,7 +73,6 @@
                     if (cartePioche.get(0).equals(carteRouge))
                     {
                         cartePioche.remove(0);
-                        System.out.println("ouiPP");
                     }
 
                         palyer.cartes.add(cartePioche.get(0));
@@ -83,7 +81,6 @@
                     if (cartePioche.get(0).equals(carteRouge))
                     {
                         cartePioche.remove(0);
-                        System.out.println("ouiPP");
                     }
                         palyer.cartes.add(cartePioche.get(0));
                         cartePioche.remove(0);
@@ -91,7 +88,6 @@
                     if (cartePioche.get(0).equals(carteRouge))
                     {
                         cartePioche.remove(0);
-                        System.out.println("ouiPD");
                     }
                         this.cartes.add(cartePioche.get(0));
                         cartePioche.remove(0);
@@ -207,8 +203,8 @@
                 {
 
                     Random r = new Random();
-                    int n = r.nextInt(52);
-                    cartesR.add(7,this.carteRouge);
+                    int n = r.nextInt(26) + 20;
+                    cartesR.add(n,this.carteRouge);
                     System.out.println(n);
                 }
 
